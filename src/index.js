@@ -1,9 +1,10 @@
+
+import * as serviceWorker from './serviceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import configureStore from './stores/configureStore';
+import * as actions from './actions';
 import Stream from './components/Stream';
-import * as serviceWorker from './serviceWorker';
-
 
 const tracks = [
     {
@@ -14,9 +15,12 @@ const tracks = [
     }
 ];
 
+const store = configureStore();
+store.dispatch(actions.setTracks(tracks));
+
 ReactDOM.render(
-    <Stream tracks={tracks} />,
-    document.getElementById('root')
+    <Stream />,
+    document.getElementById('app')
 );
 
 // If you want your app to work offline and load faster, you can change
