@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './stores/configureStore';
 import * as actions from './actions';
 import Stream from './components/Stream';
+import { Provider } from 'react-redux';
 
 const tracks = [
     {
@@ -19,8 +20,10 @@ const store = configureStore();
 store.dispatch(actions.setTracks(tracks));
 
 ReactDOM.render(
-    <Stream />,
-    document.getElementById('app')
+    <Provider store={ store }>
+        <Stream />
+    </Provider>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
